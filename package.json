@@ -1,0 +1,26 @@
+{
+  "name": "johnny-five-speech-lamp",
+  "version": "1.0.0",
+  "description": "A prototype lamp activated by speech using JavaScript",
+  "main": "index.js",
+  "author": "Iain @IainIsCreative",
+  "license": "MIT",
+  "scripts": {
+    "dev-start": "nodemon -e js --ignore dist --exec babel-node src/server",
+    "dev-server": "webpack --progress"
+  },
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-latest": "^6.24.0",
+    "express": "^4.15.2",
+    "johnny-five": "^0.10.6",
+    "nodemon": "^1.11.0",
+    "socket.io": "^1.7.3",
+    "socket.io-client": "^1.7.3"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.2"
+  }
+}

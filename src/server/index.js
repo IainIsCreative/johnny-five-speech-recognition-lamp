@@ -7,6 +7,8 @@ import socketIO from 'socket.io';
 // Import HTML function
 import renderApp from './render-app';
 
+import { tranquilLights } from '../robot/tranquil-lights';
+
 // Set up Express, the Server, and socket.io
 const app = express();
 const http = Server(app);
@@ -46,6 +48,20 @@ board.on('ready', function() {
   // store RGB LED under `lamp` constant
   const lamp = new Led.RGB([11, 10, 9]);
 
+  const colors = [
+    'darkseagreen',
+    'seagreen',
+    'mediumseagreen',
+    'teal',
+    'darkcyan',
+    'cadetblue',
+    'steelblue',
+    'royalblue',
+    'dodgerblue',
+    'skyblue',
+    'deepskyblue'
+  ];
+
   /**
    *
    *
@@ -77,8 +93,43 @@ board.on('ready', function() {
       client.on('lamp', (lampVal) => {
         lampOn = lampVal;
         if(lampOn) {
-          lamp.on();
-          lamp.color('#22eeaa');
+
+          // const lightLoop = () => {
+          //   let color = colors.shift();
+          //
+          //   lamp.color(color);
+          //
+          //   console.log(color);
+          //
+          //   if (colors.length) {
+          //     setTimeout(() => {
+          //       lightLoop();
+          //       console.log('repeating');
+          //     }, 1000);
+          //   }
+          // };
+
+          const lightLoop = () => {
+
+            for (var i = 0; i <= 255; i++) {
+              // console.log(i);
+              (function(ind) {
+                setTimeout(() => {
+                  console.log(ind);
+                  lamp.color({ red: 50, green: ind, blue: 180});
+                }, 40 * ind);
+              })(i);
+            }
+          }
+
+          // setTimeout(() => {
+          //   lightLoop();
+          //   console.log('repeating');
+          // }, 1000);
+
+          lightLoop();
+
+
         } else {
           lamp.stop().off();
         }

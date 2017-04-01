@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import socketIOClient from 'socket.io-client';
 
 const io = socketIOClient(window.location.name);

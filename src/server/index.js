@@ -5,6 +5,9 @@ import express from 'express';
 import { Server } from 'http';
 import socketIO from 'socket.io';
 
+// Import configurations for web server
+import { webPort } from '../shared/config';
+
 // Import HTML function
 import renderApp from './render-app';
 
@@ -26,8 +29,8 @@ app.get('/', (req, res) => {
 });
 
 // Run Server under specific port
-http.listen(8000, () => {
-  console.log('Server running on *:8000');
+http.listen(webPort, () => {
+  console.log(`Server running on *:${webPort}`);
 });
 
 // Set up new Johnny-Five board and set `lampOn` to false

@@ -1,9 +1,11 @@
+import { appName } from '../shared/config';
+
 const renderApp = () => (
   `<!doctype html>
   <html>
     <head>
       <meta charset="utf-8">
-      <title>Voice Activated Lamp with Johnny-Five</title>
+      <title>${appName}</title>
       <style>
 
         * {
@@ -52,10 +54,10 @@ const renderApp = () => (
 
       </style>
     </head>
-    <body class="">
+    <body>
 
       <div class="container">
-        <h1>Voice Activated Lamp with Johnny-Five</h1>
+        <h1>${appName}</h1>
         <button id="audio-activation-button">Activate the Lamp</button>
       </div>
 

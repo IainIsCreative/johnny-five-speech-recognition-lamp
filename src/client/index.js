@@ -1,19 +1,14 @@
 import socketIOClient from 'socket.io-client';
 
-const SpeechRecognition = webkitSpeechRecognition;
-
-let recognition = new SpeechRecognition();
-
-recognition.lang = 'en-GB';
-
 const io = socketIOClient(window.location.name);
 
 const audioButton = document.getElementById('audio-activation-button');
 
-console.log(audioButton);
+const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+let recognition = new SpeechRecognition();
+recognition.lang = 'en-GB';
 
 let transcript;
-
 let lampOn = false;
 
 io.on('connect', (socket) => {
@@ -25,7 +20,9 @@ io.on('connect', (socket) => {
   });
 
   recognition.onresult = (event) => {
-    transcript = event.results[0][0].transcript;
+    transcript = event.results[0][0].transcript.toLowerCase();
+
+    console.log(transcript);
 
     if (transcript == 'turn on the lamp') {
       console.log(lampOn);

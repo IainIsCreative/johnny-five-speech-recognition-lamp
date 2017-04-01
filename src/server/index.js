@@ -1,13 +1,12 @@
 // @flow
 import { Board, Led } from 'johnny-five';
+import temporal from 'temporal';
 import express from 'express';
 import { Server } from 'http';
 import socketIO from 'socket.io';
 
 // Import HTML function
 import renderApp from './render-app';
-
-import { tranquilLights } from '../robot/tranquil-lights';
 
 // Set up Express, the Server, and socket.io
 const app = express();
@@ -32,13 +31,15 @@ http.listen(8000, () => {
 });
 
 // Set up new Johnny-Five board and set `lampOn` to false
-const board = new Board();
+const board = new Board({
+  // Set REPL to false — not needed and running `rs` makes it angry
+  repl: false,
+});
 let lampOn = false;
 
 /**
  *
  * Set up Robot and add functionality when it's ready.
- *
  *
  */
 board.on('ready', function() {
@@ -48,24 +49,13 @@ board.on('ready', function() {
   // store RGB LED under `lamp` constant
   const lamp = new Led.RGB([11, 10, 9]);
 
-  const colors = [
-    'darkseagreen',
-    'seagreen',
-    'mediumseagreen',
-    'teal',
-    'darkcyan',
-    'cadetblue',
-    'steelblue',
-    'royalblue',
-    'dodgerblue',
-    'skyblue',
-    'deepskyblue'
-  ];
-
   /**
    *
+   * Run the Sockets
    *
-   *
+   * When the client is connected, log it into the console.
+   * If the client has connected, then the lamp can execute functions based on
+   * instructions from the client side.
    *
    */
   io.on('connect', (client) => {
@@ -86,53 +76,54 @@ board.on('ready', function() {
        * Then we can update the `lampOn` variable and if it's changed, it will
        * determine the state of the lamp.
        *
-       * Turn the lamp on if it's true.
-       * Turn it off if it's false.
+       * Turn the lamp on if it's true and run the loop.
+       * Turn it off if it's false, by stopping the loop.
        *
        */
       client.on('lamp', (lampVal) => {
+
+        let i = 0;
+        const colors = [
+          '#e148c6',
+          '#961ef3',
+          '#710ff7',
+          '#694bff',
+          '#5772fa',
+          '#5c98fc',
+          '#5cb6fc',
+          '#5cd4fc',
+          '#5cfcef',
+          '#4befb7',
+          '#48d16f',
+          '#41b426',
+          '#59d13d',
+          '#97ec59',
+          '#c5fb6f',
+          '#fbdf6f',
+          '#f5a56b',
+          '#f5746b',
+          '#da4d5a',
+          '#d6395a',
+          '#eb4c71',
+          '#f4519a',
+        ];
+
         lampOn = lampVal;
-        if(lampOn) {
-
-          // const lightLoop = () => {
-          //   let color = colors.shift();
-          //
-          //   lamp.color(color);
-          //
-          //   console.log(color);
-          //
-          //   if (colors.length) {
-          //     setTimeout(() => {
-          //       lightLoop();
-          //       console.log('repeating');
-          //     }, 1000);
-          //   }
-          // };
-
-          const lightLoop = () => {
-
-            for (var i = 0; i <= 255; i++) {
-              // console.log(i);
-              (function(ind) {
-                setTimeout(() => {
-                  console.log(ind);
-                  lamp.color({ red: 50, green: ind, blue: 180});
-                }, 40 * ind);
-              })(i);
+        board.loop(300, (stopLoop) => {
+          if(lampOn) {
+            lamp.color(colors[i++]);
+            if (i === colors.length) {
+              i = 0;
             }
+          } else {
+            stopLoop();
           }
+        });
 
-          // setTimeout(() => {
-          //   lightLoop();
-          //   console.log('repeating');
-          // }, 1000);
-
-          lightLoop();
-
-
-        } else {
+        if(!lampOn) {
           lamp.stop().off();
         }
+
       });
 
     }

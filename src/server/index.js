@@ -1,4 +1,5 @@
 // @flow
+
 import { Board, Led } from 'johnny-five';
 import temporal from 'temporal';
 import express from 'express';
@@ -71,7 +72,6 @@ board.on('ready', function() {
 
     // If we're connected, watch out for changes from the client
     if (connected) {
-
       /**
        *
        * When a client has sent a change to the lamp's state, receive the `lamp`
@@ -84,7 +84,6 @@ board.on('ready', function() {
        *
        */
       client.on('lamp', (lampVal) => {
-
         let i = 0;
         const colors = [
           '#e148c6',
@@ -113,8 +112,8 @@ board.on('ready', function() {
 
         lampOn = lampVal;
         board.loop(300, (stopLoop) => {
-          if(lampOn) {
-            lamp.color(colors[i++]);
+          if (lampOn) {
+            lamp.color(colors[i += 1]);
             if (i === colors.length) {
               i = 0;
             }
@@ -123,14 +122,10 @@ board.on('ready', function() {
           }
         });
 
-        if(!lampOn) {
+        if (!lampOn) {
           lamp.stop().off();
         }
-
       });
-
     }
-
   });
-
 });

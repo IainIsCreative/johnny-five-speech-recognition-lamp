@@ -1,3 +1,5 @@
+// @flow
+
 import { appName } from '../shared/config';
 
 const renderApp = () => (

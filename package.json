@@ -7,9 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev-start": "nodemon -e js --ignore dist --exec babel-node src/server",
-    "dev-server": "webpack --progress"
+    "dev-server": "webpack --progress",
+    "test": "eslint src && flow"
   },
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "express": "^4.15.2",
     "johnny-five": "^0.10.6",
     "nodemon": "^1.11.0",
@@ -22,7 +24,6 @@
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.4.1",
-    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-latest": "^6.24.0",

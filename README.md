@@ -1,12 +1,14 @@
 # Voice Activated Lamp with Johnny-Five
 
+![Voice Activated Lamp with Johnny-Five](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/develop/assets/lamp.jpg)
+
 An example of HTML5 Speech Recognition used to control a lamp using Socket.io and Johnny-Five.
 
 ## Why Speech Recognition and Robots?
 
 This was merely a small experiment of making a small lamp with Johnny-Five but also using speech recognition for control. With this, we can have a web app using Speech Recognition for commands that are then sent to our server, which will then check and change the robot's state, the robot being our lamp.
 
-It's also worth noting **this is just a prototype project.** It's nothing production ready and was made for fun, but also for practicing JS stacks, organisation, and tests.
+It's also worth noting **this is just a prototype project.** It's nothing production ready and was made for fun, but also for practicing JS stacks and organisation.
 
 ## How do I make this lamp?
 
@@ -43,5 +45,5 @@ yarn dev-server
 - `dev-start` : Starts the Express Server and uses Nodemon to watch for changes
 - `dev-server` : Begins a Webpack Development Server to rebundle your scripts.
 - `build` : Compile all the code for production.
-- `start` : Start the production copy of the server
-- `test` : Check and test the JS functionality and code
+- `start` : Start the production copy of the server.
+- `test` : Check and test the code.

@@ -21,14 +21,15 @@ When it comes to connecting a circuit, it's important to understand the flow of 
 
 ##### Breadboard
 
-https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw
-![A Diagram of current flow in a simple breadboard](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/develop/assets/breadboard-flow.png)
+![A Diagram of current flow in a simple breadboard](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/master/assets/breadboard-flow.png)
 
 Let's look at the breadboard — we're using a small breadboard for this one, which will sit in our container. The flow of power in a breadboard goes from side to side, and cables can carry the power from one part of the breadboard to the other. Breadboards are also solderless, which makes it great for prototyping. Because they're solderless, we can connect and disconnect cables and components as we see fit. Easy to connect, and easy to remove. Perfect for prototyping in numerous projects.
 
+The green lines on the breadboard diagram show the flow of current in the breadboard.
+
 ##### RGB LED
 
-![A diagram of an RGB LED.](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/develop/assets/rgb-diagram.png)
+![A diagram of an RGB LED.](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/master/assets/rgb-diagram.png)
 
 Our RGB LED has 3 points, and need to be connected via 3 seperate pins, one for each color. Notice on the LED there's a long pin — on an LED, this is the negative pin. All the other pins, from left to right, are Red, Green, and Blue, respectively, and are connected by the positive points of the circuit.
 
@@ -44,7 +45,7 @@ Another thing that may catch you out is knowing which resistor is which. Pay att
 
 In our project, we need 5 male-to-male pin cables, 3 220Ohm resistors, an RGB LED, and our small breadboard. We connect the 3 pins for our Red, Green, and Blue pins through to the breadboard, which will then connect up to our resistors, and onto each RGB pin of our LED.
 
-![The circuit of our Lamp.](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/develop/assets/lamp-circuit.png)
+![The circuit of our Lamp.](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/master/assets/lamp-circuit.png)
 
 The negative pin of the LED is then connected through to a cable, which will carry it along the breadboard, and connect up to another cable, which is connected to our Arduino Microcontroller through a GND pin. This completes the circuit and you should have a simple circuit ready to use!
 

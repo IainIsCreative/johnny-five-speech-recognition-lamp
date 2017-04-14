@@ -1,6 +1,6 @@
 # Voice Activated Lamp with Johnny-Five
 
-![Voice Activated Lamp with Johnny-Five](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/develop/assets/lamp.jpg)
+![Voice Activated Lamp with Johnny-Five](https://github.com/IainIsCreative/johnny-five-speech-recognition-lamp/raw/master/assets/lamp.jpg)
 
 An example of HTML5 Speech Recognition used to control a lamp using Socket.io and Johnny-Five.
 

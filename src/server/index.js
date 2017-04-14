@@ -1,7 +1,7 @@
 // @flow
 
+/* eslint-disable no-console */
 import { Board, Led } from 'johnny-five';
-import temporal from 'temporal';
 import express from 'express';
 import { Server } from 'http';
 import socketIO from 'socket.io';
@@ -19,7 +19,6 @@ const io = socketIO.listen(http);
 
 // Set up socket and connected variables
 let connected = false;
-let socket;
 
 // Place `dist` directory under `/static` alias
 app.use('/static', express.static('dist'));

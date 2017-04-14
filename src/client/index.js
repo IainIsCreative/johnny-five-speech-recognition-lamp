@@ -10,10 +10,8 @@ const io = socketIOClient(window.location.name);
 // Get the Audio Trigger Button
 const audioButton = document.getElementById('audio-activation-button');
 
-/* eslint-disable no-undef */
 const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
-/* eslint-enable no-undef */
 recognition.lang = 'en-GB';
 
 /**
@@ -93,6 +91,9 @@ io.on('connect', () => {
     }
   };
 
+  /**
+   * When nothing is said after the command, stop SpeechRecognition.
+   */
   recognition.onspeechend = () => {
     recognition.stop();
   };
